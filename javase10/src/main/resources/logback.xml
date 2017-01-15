@@ -1,0 +1,12 @@
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!-- "application-name" is a variable -->
+        <File>/home/alexmich/apache-tomcat-8.0.39/logs/javase10.log</File>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d %p %t %c - %m%n</Pattern>
+        </layout>
+    </appender>
+    <root level="debug">
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
