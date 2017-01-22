@@ -26,13 +26,13 @@ public class PgDAOImpl extends DAO {
     }
 
     @Override
-    public boolean add(String name, double caliber, double rate, InputStream image) {
+    public boolean add(String name, double caliber, double rate, InputStream image, long imageSize) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement statement = connection.prepareStatement("INSERT INTO guns(name,caliber,rate,image) VALUES(?,?,?,?)");
             statement.setString(1,name);
             statement.setDouble(2,caliber);
             statement.setDouble(3,rate);
-            statement.setBinaryStream(4,image);
+            statement.setBinaryStream(4,image,(int)imageSize);
             return statement.executeUpdate() != 0;
         } catch (SQLException e){
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class PgDAOImpl extends DAO {
         builder.name(resultSet.getString("name"));
         builder.caliber(resultSet.getDouble("caliber"));
         builder.rate(resultSet.getDouble("rate"));
-        builder.image(resultSet.getBlob("image"));
+        builder.image(resultSet.getBinaryStream("image"));
         return builder.build();
     }
 
@@ -125,5 +125,20 @@ public class PgDAOImpl extends DAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public long getRawsNumber(){
+        try (Connection connection = dataSource.getConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet =statement.executeQuery("SELECT COUNT(*) FROM guns");
+            if (resultSet.next())
+                return resultSet.getLong(1);
+            else
+                return -1;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

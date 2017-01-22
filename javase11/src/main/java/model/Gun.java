@@ -2,6 +2,7 @@ package model;
 
 import lombok.*;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 @Builder
@@ -16,5 +17,5 @@ public class Gun {
     String name;
     private double caliber;
     private double rate;
-    private Blob image;
+    private InputStream image;
 }

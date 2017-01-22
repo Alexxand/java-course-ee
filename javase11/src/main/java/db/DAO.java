@@ -16,10 +16,11 @@ public abstract class DAO {
     }
 
 
-    public abstract boolean add(String name, double caliber, double rate, InputStream image);
+    public abstract boolean add(String name, double caliber, double rate, InputStream image, long imageSize);
     public abstract List<Gun> getRange(int firstId, int lastId);
     public abstract List<Gun> getByPartOfName(String partOfName);
     public abstract Gun getById(int id);
     public abstract boolean delete(int id);
     public abstract boolean deleteAll(List<Integer> ids);
+    public abstract long getRawsNumber();
 }

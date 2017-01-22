@@ -10,9 +10,11 @@ import com.google.inject.servlet.ServletModule;
 import controllers.AddController;
 import controllers.DeleteController;
 import controllers.DisplayController;
+import controllers.ImageController;
 import db.DAO;
 import db.PgDAOImpl;
 import db.PgDataSourceProvider;
+import filters.CharsetFilter;
 import filters.LocaleFilter;
 
 import javax.servlet.annotation.WebListener;
@@ -45,6 +47,8 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/add","/").with(AddController.class);
             serve("/delete").with(DeleteController.class);
             serve("/display").with(DisplayController.class);
+            serve("/image").with(ImageController.class);
+            filter("/*").through(CharsetFilter.class);
             filter("/*").through(LocaleFilter.class);
         }
     }

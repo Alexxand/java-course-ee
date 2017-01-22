@@ -13,6 +13,11 @@
 <head>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
     <%--<link rel="stylesheet" href="${contextPath}/webjars/bootstrap/3.3.7-1/css/bootstrap.min-jsf.css" />--%>
+    <style type="text/css">
+        TABLE {
+            table-layout: fixed; /* Ячейки фиксированной ширины */
+        }
+    </style>
 </head>
 <body>
 
