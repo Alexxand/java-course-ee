@@ -17,11 +17,6 @@ import java.io.IOException;
 @Singleton
 public class DeleteController extends HttpServlet {
 
-    @Inject
-    public DeleteController(){
-        super();
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/delete/index.jsp").forward(req,resp);

@@ -14,10 +14,6 @@ import java.io.IOException;
 @Singleton
 public class DisplayController extends HttpServlet {
 
-    @Inject
-    public DisplayController(){
-        super();
-    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/display/index.jsp").forward(req,resp);
