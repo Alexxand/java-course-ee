@@ -59,11 +59,11 @@ public class PgDAOImpl extends DAO {
     }
 
     @Override
-    public List<Gun> getRange(int firstId, int lastId) {
+    public List<Gun> getRange(int first, int last) {
         try (Connection connection = dataSource.getConnection()){
-            PreparedStatement statement = connection.prepareStatement("SELECT id, name, caliber, rate, image FROM guns WHERE id>=? AND id<=?");
-            statement.setInt(1,firstId);
-            statement.setInt(2,lastId);
+            PreparedStatement statement = connection.prepareStatement("SELECT id, name, caliber, rate, image FROM guns ORDER BY id LIMIT ? OFFSET ?");
+            statement.setInt(1,last - first + 1);
+            statement.setInt(2,first - 1);
             ResultSet resultSet = statement.executeQuery();
             return toList(resultSet);
         } catch (SQLException e){
@@ -115,7 +115,6 @@ public class PgDAOImpl extends DAO {
             }
             queryStringBuilder.append("?)");
             String queryString = queryStringBuilder.toString();
-            System.out.println(queryString);
             PreparedStatement statement = connection.prepareStatement(queryString);
             for (int i = 0; i < nIds; ++i) {
                 statement.setInt(i + 1, ids.get(i));

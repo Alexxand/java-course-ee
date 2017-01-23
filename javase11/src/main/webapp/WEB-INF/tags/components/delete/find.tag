@@ -11,34 +11,27 @@
 <fmt:message bundle="${find}" key="delete.find.id.header" var="idHeader"/>
 <fmt:message bundle="${find}" key="delete.find.id.field.name" var="idFieldName"/>
 <fmt:message bundle="${find}" key="delete.find.id.submit" var="idSubmit"/>
-<fmt:message bundle="${find}" key="delete.find.name.header" var="nameHeader"/>
-<fmt:message bundle="${find}" key="delete.find.name.field.name" var="nameFieldName"/>
-<fmt:message bundle="${find}" key="delete.find.name.submit" var="nameSubmit"/>
+<fmt:message bundle="${find}" key="delete.find.alert.fail" var="fail"/>
+<fmt:message bundle="${find}" key="delete.find.alert.success" var="success"/>
+
+<c:if test="${requestScope.result == 'SUCCESS'}">
+    <div class="alert alert-success" role="alert">${success}</div>
+</c:if>
+<c:if test="${requestScope.result == 'FAIL'}">
+    <div class="alert alert-danger" role="alert">${fail}</div>
+</c:if>
 
 <div class="container col-lg-5">
     <div class="table-bordered">
         <div class="modal-header text-right">
             ${idHeader}
         </div>
-        <form class="form-inline text-right" method="post">
+        <form class="form-inline text-right" method="get">
             <div class="form-group">
                 <label for="id">${idFieldName}</label>
-                <input type="text" class="form-control" id="id">
+                <input type="text" class="form-control" id="id" name="id">
             </div>
             <button type="submit" class="btn btn-success">${idSubmit}</button>
-        </form>
-    </div>
-    <br />
-    <div class="table-bordered">
-        <div class="modal-header text-right">
-            ${nameHeader}
-        </div>
-        <form class="form-inline text-right" method="post">
-            <div class="form-group">
-                <label for="name">${nameFieldName}</label>
-                <input type="text" class="form-control" id="name">
-            </div>
-            <button type="submit" class="btn btn-success">${nameSubmit}</button>
         </form>
     </div>
 </div>

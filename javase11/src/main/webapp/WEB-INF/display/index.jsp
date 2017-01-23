@@ -2,5 +2,5 @@
 <%@taglib prefix="mytags" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="comp" tagdir="/WEB-INF/tags/components/display" %>
 <mytags:main page="DISPLAY">
-<comp:display />
+    <comp:display />
 </mytags:main>
